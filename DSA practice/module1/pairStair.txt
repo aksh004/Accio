@@ -1,0 +1,55 @@
+problem pairStair:
+Given a string, compute recursively a new string where identical chars that are adjacent in the original string are separated from each other by a "*".
+
+pairStar("hello") ? "hello" pairStar("xxyy") ? "xxyy" pairStar("aaaa") ? "aaaa"
+
+** Input format** The first line contains the string.
+
+Output format Print the desired output where there is a * between consecutive same characters.
+
+Example hello Output hel*lo
+
+Constraints 1 <= Len(str) <= 1000
+
+
+// code
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+    // result to store the required String
+   static String result = "";
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		//your code here
+      Scanner sc = new Scanner(System.in);
+      String s = sc.next();
+      pairStar(s,0);
+      
+      System.out.println(result);
+	}
+
+  public static String pairStar(String s, int i){
+
+    // add  each character of the string to result
+      result += s.charAt(i);     // result =result + s.charAt(i);
+    // base case 
+    // if i reaches (n-1) then return;
+    if(i== s.length()-1){
+      return "";
+    }
+    // check if next char is same as previous char
+    if(s.charAt(i) == s.charAt(i+1)){
+      //if true add * before printing the next char
+      result += '*';
+      }
+      
+      return pairStar(s,(i+1));
+
+    
+  } 
+  
+}

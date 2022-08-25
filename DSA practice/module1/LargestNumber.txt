@@ -1,0 +1,66 @@
+Leet code 179. Largest Number
+
+Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+
+Since the result may be very large, so you need to return a string instead of an integer.
+
+ 
+
+Example 1:
+
+Input: nums = [10,2]
+Output: "210"
+Example 2:
+
+Input: nums = [3,30,34,5,9]
+Output: "9534330"
+
+
+// code 
+
+class Solution {
+    public String largestNumber(int[] nums) {
+        
+        int n = nums.length;
+        String[] arr = new String[n];
+        
+        for(int i=0;i<n;i++){
+            // convert  array of int to array of strings
+            arr[i] = String.valueOf(nums[i]);
+        }
+        
+        for(int i=0;i<n;i++){
+            int min_index = i;
+            for(int j=i+1;j<n;j++){
+                String s1 = arr[min_index] + arr[j];
+                String s2 = arr[j] + arr[min_index];
+                
+                // compare which is greater amoung s1 & s2
+                
+                if(s2.compareTo(s1)>0){
+                    min_index = j;
+                    
+                }
+            }
+      
+        
+        // just swap i with min_index
+        String s = arr[i];
+        arr[i] = arr[min_index];
+        arr[min_index] = s;
+            
+    } 
+        
+        if(arr[0].charAt(0) == '0'){
+            return "0";
+        }
+        
+        String ret = ""; // initialize with new string 
+        for(int i=0;i<n;i++){
+            ret += arr[i];
+        }
+        return ret;
+        
+        
+    }
+}
